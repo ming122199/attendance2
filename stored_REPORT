@@ -1,0 +1,64 @@
+/*
+SQLyog Community v13.1.6 (64 bit)
+MySQL - 5.0.67-community-nt : Database - db_attendance
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_attendance` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `db_attendance`;
+
+/* Procedure structure for procedure `prcFilterSummaryHours` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `prcFilterSummaryHours` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `prcFilterSummaryHours`(date1 varchar(200),
+                                                      date2 varchar(200),
+                                                       i varchar(10))
+BEGIN
+
+
+
+
+SELECT a.id,  a.f_name, a.l_name , b.date, b.time_in, b.time_out, b.total_hours
+FROM tbl_employee a
+JOIN tbl_summaryhours b
+WHERE a.id=b.emp_id AND a.id=i AND DATE >= date1  AND DATE <= date2;
+
+
+
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `prcFilterUserByDate` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `prcFilterUserByDate` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `prcFilterUserByDate`(date1 VARCHAR(200))
+BEGIN
+
+
+SELECT a.id,  a.f_name, a.l_name , b.date, b.time_in, b.time_out, b.total_hours
+FROM tbl_employee a
+JOIN tbl_summaryhours b
+WHERE a.id=b.emp_id  AND DATE = date1 ;
+
+	END */$$
+DELIMITER ;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
